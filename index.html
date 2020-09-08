@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .node-api {
+        display: flex;
+        flex-flow: column wrap;
+        background: black;
+			  margin: 5px;
+        border: 10px solid #3EB489;
+			  padding: 5px;
+			  color: white;
+      }
+      #server-time { background: orange; }
+      .node-api p {
+        color: black;
+        font-size: 1.25em;
+      }
+      .node-api p a {
+        color: white;
+      }
+    </style>
+    <script>
+      let HOST = location.origin.replace(/^http/, 'ws')
+      let ws = new WebSocket(HOST);
+      let el;
+
+      ws.onmessage = (event) => {
+        el = document.getElementById('server-time');
+        el.innerHTML = 'Server time: ' + event.data;
+      };
+    </script>
+  </head>
+  <body>
+  	<div class="node-api">
+      <h2>Eagleton Web Consulting: Node API</h2>
+      <h3>Real-Time Web, Delivered !</h3>
+      <p id="server-time"></p>
+      <p><a href="https://vast-cove-49720.herokuapp.com/">React UI Connection</a></p>
+	</div>
+  </body>
+</html>
